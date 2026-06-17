@@ -35,7 +35,7 @@ jobs:
         run: npm install @capacitor/android@8 --save
 
       - name: Build producción
-        run: npx ionic build --prod
+        run: npx ng build --configuration production
 
       - name: Agregar plataforma Android
         run: npx cap add android
