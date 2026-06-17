@@ -1,0 +1,199 @@
+// ─── Header ───────────────────────────────────────────────────
+.fav-header ion-toolbar { display: none; }
+
+.fav-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--poke-red, #CC0000);
+  padding: 12px 14px 10px;
+  padding-top: calc(12px + var(--ion-safe-area-top, 0px));
+  box-shadow: 0 2px 0 var(--poke-red-dark, #8B0000);
+}
+
+.back-btn {
+  background: rgba(255,255,255,0.18);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.fav-title {
+  flex: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+}
+
+.fav-title-icon {
+  font-size: 1.3rem;
+  color: #ff8080;
+  filter: drop-shadow(0 0 4px rgba(255,0,0,0.4));
+}
+
+// ─── Content ──────────────────────────────────────────────────
+.fav-content {
+  --background: #f0f0f0;
+
+  @media (prefers-color-scheme: dark) {
+    --background: #121212;
+  }
+}
+
+// ─── Empty state ──────────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.empty-ball {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  opacity: 0.35;
+
+  .eb-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--poke-red, #CC0000);
+    border-radius: 50px 50px 0 0;
+  }
+  .eb-bottom {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    border-radius: 0 0 50px 50px;
+    border: 2px solid #333;
+    border-top: none;
+  }
+  .eb-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 2;
+    border: 3px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .eb-btn {
+    width: 9px;
+    height: 9px;
+    background: #eee;
+    border-radius: 50%;
+    border: 1px solid #999;
+  }
+}
+
+.empty-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+}
+
+.empty-sub {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+  margin: 0;
+  line-height: 1.5;
+}
+
+// ─── List ─────────────────────────────────────────────────────
+.fav-list {
+  padding: 10px;
+  background: transparent;
+}
+
+.fav-item {
+  --background: var(--poke-card-bg, #fff);
+  --border-radius: 14px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --inner-padding-end: 0;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+.fav-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+
+  img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+}
+
+.fav-name {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  color: var(--ion-text-color) !important;
+  text-transform: capitalize;
+  margin-bottom: 2px;
+}
+
+.fav-id {
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 0.7rem !important;
+  color: var(--ion-color-medium) !important;
+  font-weight: 700 !important;
+}
+
+.fav-types {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.type-pill {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  border-radius: 20px;
+  padding: 2px 8px;
+  color: rgba(255,255,255,0.95);
+  background: rgba(0,0,0,0.15);
+  letter-spacing: 0.2px;
+}
+
+.fav-chevron {
+  color: var(--ion-color-medium);
+  font-size: 1rem;
+  margin-left: 4px;
+}

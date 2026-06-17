@@ -1,0 +1,147 @@
+<ion-header class="detail-header">
+  <div class="detail-topbar" [style.background]="'var(--color-' + primaryType + ', #888)'">
+    <button class="back-btn" (click)="goBack()">
+      <ion-icon name="chevron-back"></ion-icon>
+    </button>
+    <span class="detail-title" *ngIf="pokemon">{{ pokemon.name | titlecase }}</span>
+    <div class="detail-actions">
+      <button class="action-btn" (click)="playSound()" title="Cry">
+        <ion-icon name="volume-high"></ion-icon>
+      </button>
+      <button class="action-btn" (click)="toggleFavorite()">
+        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+      </button>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content *ngIf="!loading && pokemon" @fadeSlide class="detail-content">
+
+  <!-- Hero -->
+  <div class="hero" [style.background]="'var(--color-' + primaryType + ', #888)'">
+    <!-- Pokéball grande de fondo -->
+    <div class="hero__ball"></div>
+
+    <div class="hero__meta">
+      <span class="hero__id">{{ formatId(pokemon.id) }}</span>
+      <div class="hero__types">
+        <span *ngFor="let t of pokemon.types" [class]="'hero-type-badge type-' + t.type.name">
+          {{ typeLabel(t.type.name) }}
+        </span>
+      </div>
+    </div>
+
+    <img
+      [src]="pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default"
+      [alt]="pokemon.name"
+      class="hero__img"
+    />
+  </div>
+
+  <!-- Card body -->
+  <div class="card-body">
+
+    <!-- Puntos decorativos estilo Pokédex -->
+    <div class="dex-dots">
+      <span class="dot dot--red"></span>
+      <span class="dot dot--yellow"></span>
+      <span class="dot dot--green"></span>
+    </div>
+
+    <!-- Flavor -->
+    <p class="flavor-text" *ngIf="flavorText">"{{ flavorText }}"</p>
+
+    <!-- Stats físicos -->
+    <div class="physical-row">
+      <div class="physical-item">
+        <span class="physical-value">{{ (pokemon.height / 10).toFixed(1) }}<small>m</small></span>
+        <span class="physical-label">{{ lang.t['height'] }}</span>
+      </div>
+      <div class="physical-sep"></div>
+      <div class="physical-item">
+        <span class="physical-value">{{ (pokemon.weight / 10).toFixed(1) }}<small>kg</small></span>
+        <span class="physical-label">{{ lang.t['weight'] }}</span>
+      </div>
+      <div class="physical-sep"></div>
+      <div class="physical-item">
+        <span class="physical-value">{{ pokemon.base_experience || '?' }}</span>
+        <span class="physical-label">{{ lang.t['baseExp'] }}</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab" [class.active]="activeTab==='stats'"     (click)="activeTab='stats'">{{ lang.t['tabStats'] }}</button>
+      <button class="tab" [class.active]="activeTab==='abilities'" (click)="activeTab='abilities'">{{ lang.t['tabAbil'] }}</button>
+      <button class="tab" [class.active]="activeTab==='evolution'" (click)="activeTab='evolution'">{{ lang.t['tabEvol'] }}</button>
+      <button class="tab" [class.active]="activeTab==='moves'"     (click)="activeTab='moves'">{{ lang.t['tabMoves'] }}</button>
+    </div>
+
+    <!-- Stats -->
+    <div *ngIf="activeTab==='stats'" class="tab-content" @fadeSlide>
+      <div class="stat-row" *ngFor="let s of pokemon.stats">
+        <span class="stat-name">{{ statLabel(s.stat.name) }}</span>
+        <span class="stat-value" [style.color]="statColors[s.stat.name] || '#888'">{{ s.base_stat }}</span>
+        <div class="stat-bar-track">
+          <div
+            class="stat-bar-fill"
+            [style.width.%]="statPercent(s.base_stat)"
+            [style.background]="statColors[s.stat.name] || '#aaa'"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abilities -->
+    <div *ngIf="activeTab==='abilities'" class="tab-content" @fadeSlide>
+      <div class="ability-item" *ngFor="let a of pokemon.abilities">
+        <div class="ability-icon" [class.hidden]="a.is_hidden">
+          <ion-icon [name]="a.is_hidden ? 'eye-off' : 'flash'"></ion-icon>
+        </div>
+        <div>
+          <p class="ability-name">{{ formatName(a.ability.name) | titlecase }}</p>
+          <p class="ability-tag" *ngIf="a.is_hidden">{{ lang.t['hiddenAbil'] }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evolution -->
+    <div *ngIf="activeTab==='evolution'" class="tab-content" @fadeSlide>
+      <div class="evolution-chain">
+        <ng-container *ngFor="let evo of evolution; let i = index">
+          <div class="evo-item" [routerLink]="['/detail', evo.id]" [class.current]="evo.id === pokemon.id">
+            <div class="evo-img-wrap" [class]="'type-bg-' + (evo.types[0] || 'normal')">
+              <img [src]="evo.sprite" [alt]="evo.name" class="evo-img" />
+            </div>
+            <span class="evo-name">{{ evo.name | titlecase }}</span>
+            <span class="evo-id">{{ formatId(evo.id) }}</span>
+          </div>
+          <div class="evo-arrow" *ngIf="i < evolution.length - 1">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+      <p class="evo-empty" *ngIf="evolution.length <= 1">{{ lang.t['noEvolution'] }}</p>
+    </div>
+
+    <!-- Moves -->
+    <div *ngIf="activeTab==='moves'" class="tab-content" @fadeSlide>
+      <div class="moves-grid">
+        <span class="move-pill" *ngFor="let m of pokemon.moves.slice(0, 40)">
+          {{ formatName(m.move.name) }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-content *ngIf="loading" class="detail-content">
+  <div class="loading-container">
+    <div class="pokeball-loader">
+      <div class="pb-top"></div>
+      <div class="pb-center"><div class="pb-btn"></div></div>
+      <div class="pb-bottom"></div>
+    </div>
+  </div>
+</ion-content>

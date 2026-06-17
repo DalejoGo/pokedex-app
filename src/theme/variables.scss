@@ -1,0 +1,54 @@
+// Pokédex theme
+
+:root {
+  // Primary = Pokédex Red
+  --ion-color-primary:          #CC0000;
+  --ion-color-primary-rgb:      204,0,0;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade:    #a30000;
+  --ion-color-primary-tint:     #e03333;
+
+  --ion-color-secondary:        #1a1a2e;
+  --ion-color-secondary-rgb:    26,26,46;
+  --ion-color-secondary-contrast:#ffffff;
+  --ion-color-secondary-shade:  #111120;
+  --ion-color-secondary-tint:   #2e2e4a;
+
+  --ion-color-tertiary:         #f7c948;
+  --ion-color-tertiary-rgb:     247,201,72;
+  --ion-color-tertiary-contrast:#000000;
+  --ion-color-tertiary-shade:   #d9b13f;
+  --ion-color-tertiary-tint:    #f8d05a;
+
+  --ion-color-success:          #2dd36f;
+  --ion-color-warning:          #f7c948;
+  --ion-color-danger:           #eb445a;
+  --ion-color-medium:           #92949c;
+  --ion-color-light:            #f4f5f8;
+  --ion-color-dark:             #1a1a2e;
+
+  --ion-font-family: 'Nunito', sans-serif;
+  --ion-background-color: #f0f0f0;
+  --ion-background-color-rgb: 240,240,240;
+  --ion-text-color: #1a1a2e;
+
+  --poke-red:       #CC0000;
+  --poke-red-dark:  #8B0000;
+  --poke-black:     #1a1a2e;
+  --poke-yellow:    #f7c948;
+  --poke-screen:    #8bac0f;
+  --poke-card-bg:   #ffffff;
+  --poke-radius:    16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color:     #121212;
+    --ion-background-color-rgb: 18,18,18;
+    --ion-text-color:           #f0f0f0;
+    --poke-card-bg:             #1e1e1e;
+    --ion-color-light:          #2a2a2a;
+    --ion-color-light-shade:    #222222;
+    --ion-color-light-tint:     #333333;
+  }
+}

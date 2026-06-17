@@ -1,0 +1,483 @@
+// ─── Header ───────────────────────────────────────────────────
+.detail-header ion-toolbar { display: none; }
+
+.detail-topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px 10px;
+  padding-top: calc(12px + var(--ion-safe-area-top, 0px));
+}
+
+.back-btn, .action-btn {
+  background: rgba(255,255,255,0.18);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+
+  &:active { background: rgba(255,255,255,0.35); }
+}
+
+.detail-title {
+  flex: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.72rem;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 6px;
+}
+
+// ─── Content ──────────────────────────────────────────────────
+.detail-content {
+  --background: #f0f0f0;
+
+  @media (prefers-color-scheme: dark) {
+    --background: #121212;
+  }
+}
+
+// ─── Hero ─────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  padding: 10px 20px 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__ball {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 25px solid rgba(255,255,255,0.12);
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -25px;
+      right: -25px;
+      height: 5px;
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-50%);
+    }
+  }
+
+  &__meta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  &__id {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.6);
+  }
+
+  &__types {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__img {
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.hero-type-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 3px 12px;
+  border-radius: 20px;
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  letter-spacing: 0.3px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+// ─── Card body ────────────────────────────────────────────────
+.card-body {
+  background: var(--ion-background-color, #f0f0f0);
+  border-radius: 28px 28px 0 0;
+  margin-top: -28px;
+  position: relative;
+  z-index: 3;
+  padding: 16px 16px 40px;
+  min-height: 55vh;
+}
+
+.dex-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  &--red    { background: #CC0000; }
+  &--yellow { background: #f7c948; }
+  &--green  { background: #2dd36f; }
+}
+
+// ─── Flavor ───────────────────────────────────────────────────
+.flavor-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ion-color-medium);
+  text-align: center;
+  margin: 0 4px 16px;
+  line-height: 1.5;
+}
+
+// ─── Physical ─────────────────────────────────────────────────
+.physical-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--ion-color-light, #fff);
+  border-radius: 14px;
+  padding: 12px 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.physical-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.physical-value {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--ion-text-color, #1a1a2e);
+  small { font-size: 0.6rem; font-weight: 700; opacity: 0.6; margin-left: 1px; }
+}
+
+.physical-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--ion-color-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.physical-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--ion-color-medium);
+  opacity: 0.2;
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────
+.tabs {
+  display: flex;
+  background: var(--ion-color-light, #f4f5f8);
+  border-radius: 12px;
+  padding: 3px;
+  margin-bottom: 16px;
+  gap: 2px;
+}
+
+.tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--ion-color-medium);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.active {
+    background: #fff;
+    color: var(--poke-red, #CC0000);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+}
+
+.tab-content { animation: fadeUp 0.25s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─── Stats ────────────────────────────────────────────────────
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stat-name {
+  width: 36px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: var(--ion-color-medium);
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.stat-value {
+  width: 34px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-align: right;
+}
+
+.stat-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--ion-color-light-shade, #e0e0e0);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+// ─── Abilities ────────────────────────────────────────────────
+.ability-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--ion-color-light, #f4f5f8);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.ability-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--poke-yellow, #f7c948);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #fff;
+  flex-shrink: 0;
+
+  &.hidden {
+    background: var(--ion-color-medium);
+  }
+}
+
+.ability-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.ability-tag {
+  font-size: 0.65rem;
+  color: var(--ion-color-medium);
+  margin: 2px 0 0;
+  font-weight: 700;
+}
+
+// ─── Evolution ────────────────────────────────────────────────
+.evolution-chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.evo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 14px;
+  transition: transform 0.2s;
+
+  &.current {
+    background: rgba(204,0,0,0.08);
+    outline: 2px solid var(--poke-red, #CC0000);
+  }
+
+  &:active { transform: scale(0.94); }
+}
+
+.evo-img-wrap {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+}
+
+.evo-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  margin-top: 6px;
+  color: var(--ion-text-color);
+}
+
+.evo-id {
+  font-size: 0.6rem;
+  color: var(--ion-color-medium);
+  font-weight: 700;
+}
+
+.evo-arrow {
+  font-size: 1.3rem;
+  color: var(--ion-color-medium);
+  opacity: 0.5;
+}
+
+.evo-empty {
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+// ─── Moves ────────────────────────────────────────────────────
+.moves-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.move-pill {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 4px 12px;
+  background: var(--ion-color-light, #f4f5f8);
+  border-radius: 20px;
+  color: var(--ion-text-color, #1a1a2e);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+// ─── Loading ──────────────────────────────────────────────────
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.pokeball-loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  animation: spin 1s linear infinite;
+
+  .pb-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--poke-red, #CC0000);
+    border-radius: 50px 50px 0 0;
+  }
+  .pb-bottom {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    border-radius: 0 0 50px 50px;
+    border: 2px solid #333;
+    border-top: none;
+  }
+  .pb-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 2;
+    border: 3px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pb-btn {
+    width: 7px;
+    height: 7px;
+    background: #eee;
+    border-radius: 50%;
+    border: 1px solid #999;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

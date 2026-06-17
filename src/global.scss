@@ -1,0 +1,124 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+@import "theme/variables";
+
+// ──────────────────────────────────────────────
+// Pokémon type color system
+// ──────────────────────────────────────────────
+:root {
+  --color-normal:          #A8A878;
+  --color-normal-light:    #C6C6A7;
+  --color-fire:            #F08030;
+  --color-fire-light:      #F5C6A0;
+  --color-water:           #6890F0;
+  --color-water-light:     #9DB7F5;
+  --color-electric:        #F8D030;
+  --color-electric-light:  #FAE078;
+  --color-grass:           #78C850;
+  --color-grass-light:     #A7DB8D;
+  --color-ice:             #98D8D8;
+  --color-ice-light:       #BCE6E6;
+  --color-fighting:        #C03028;
+  --color-fighting-light:  #D67873;
+  --color-poison:          #A040A0;
+  --color-poison-light:    #C183C1;
+  --color-ground:          #E0C068;
+  --color-ground-light:    #EBD69D;
+  --color-flying:          #A890F0;
+  --color-flying-light:    #C6B7F5;
+  --color-psychic:         #F85888;
+  --color-psychic-light:   #FA92B2;
+  --color-bug:             #A8B820;
+  --color-bug-light:       #C6D16E;
+  --color-rock:            #B8A038;
+  --color-rock-light:      #D1C17D;
+  --color-ghost:           #705898;
+  --color-ghost-light:     #A292BC;
+  --color-dragon:          #7038F8;
+  --color-dragon-light:    #A27DFA;
+  --color-dark:            #705848;
+  --color-dark-light:      #A29288;
+  --color-steel:           #B8B8D0;
+  --color-steel-light:     #D1D1E0;
+  --color-fairy:           #EE99AC;
+  --color-fairy-light:     #F4BDC9;
+  --color-stellar:         #40B5A5;
+  --color-stellar-light:   #7ECEC4;
+}
+
+// Type badge backgrounds
+.type-normal    { background: var(--color-normal) !important; }
+.type-fire      { background: var(--color-fire) !important; }
+.type-water     { background: var(--color-water) !important; }
+.type-electric  { background: var(--color-electric) !important; color: #333 !important; }
+.type-grass     { background: var(--color-grass) !important; }
+.type-ice       { background: var(--color-ice) !important; color: #333 !important; }
+.type-fighting  { background: var(--color-fighting) !important; }
+.type-poison    { background: var(--color-poison) !important; }
+.type-ground    { background: var(--color-ground) !important; color: #333 !important; }
+.type-flying    { background: var(--color-flying) !important; }
+.type-psychic   { background: var(--color-psychic) !important; }
+.type-bug       { background: var(--color-bug) !important; }
+.type-rock      { background: var(--color-rock) !important; }
+.type-ghost     { background: var(--color-ghost) !important; }
+.type-dragon    { background: var(--color-dragon) !important; }
+.type-dark      { background: var(--color-dark) !important; }
+.type-steel     { background: var(--color-steel) !important; color: #333 !important; }
+.type-fairy     { background: var(--color-fairy) !important; }
+.type-stellar   { background: var(--color-stellar) !important; }
+
+// Card backgrounds per type (for the grid)
+.type-bg-normal   { background: var(--color-normal-light) !important; }
+.type-bg-fire     { background: var(--color-fire-light) !important; }
+.type-bg-water    { background: var(--color-water-light) !important; }
+.type-bg-electric { background: var(--color-electric-light) !important; }
+.type-bg-grass    { background: var(--color-grass-light) !important; }
+.type-bg-ice      { background: var(--color-ice-light) !important; }
+.type-bg-fighting { background: var(--color-fighting-light) !important; }
+.type-bg-poison   { background: var(--color-poison-light) !important; }
+.type-bg-ground   { background: var(--color-ground-light) !important; }
+.type-bg-flying   { background: var(--color-flying-light) !important; }
+.type-bg-psychic  { background: var(--color-psychic-light) !important; }
+.type-bg-bug      { background: var(--color-bug-light) !important; }
+.type-bg-rock     { background: var(--color-rock-light) !important; }
+.type-bg-ghost    { background: var(--color-ghost-light) !important; }
+.type-bg-dragon   { background: var(--color-dragon-light) !important; }
+.type-bg-dark     { background: var(--color-dark-light) !important; }
+.type-bg-steel    { background: var(--color-steel-light) !important; }
+.type-bg-fairy    { background: var(--color-fairy-light) !important; }
+.type-bg-stellar  { background: var(--color-stellar-light) !important; }

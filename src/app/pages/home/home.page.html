@@ -1,0 +1,100 @@
+<ion-header class="pokedex-header">
+  <!-- Top bar: luces + título -->
+  <div class="pokedex-topbar">
+    <div class="pokedex-lights">
+      <div class="light light--big light--blue"></div>
+      <div class="light light--sm light--red"></div>
+      <div class="light light--sm light--yellow"></div>
+      <div class="light light--sm light--green"></div>
+    </div>
+    <span class="pokedex-title">PokéDex</span>
+    <button class="lang-toggle" (click)="toggleLang()">
+      {{ lang.current === 'es' ? 'EN' : 'ES' }}
+    </button>
+    <ion-button fill="clear" (click)="goToFavorites()" class="fav-btn">
+      <ion-icon name="heart" slot="icon-only" color="light"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Searchbar -->
+  <div class="pokedex-search-wrap">
+    <ion-searchbar
+      [placeholder]="lang.t['search']"
+      [value]="searchQuery"
+      (ionInput)="onSearchChange($event)"
+      animated
+      class="pokedex-searchbar"
+    ></ion-searchbar>
+  </div>
+
+  <!-- Type chips -->
+  <div class="types-scroll-wrapper">
+    <div class="types-scroll">
+      <button
+        *ngFor="let type of types"
+        [class]="'type-chip type-' + type"
+        [class.selected]="selectedType === type"
+        (click)="onTypeSelect(type)"
+      >
+        {{ typeLabel(type) }}
+      </button>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content class="pokedex-content">
+  <!-- Loading -->
+  <div class="loading-container" *ngIf="loading && pokemons.length === 0">
+    <div class="pokeball-loader">
+      <div class="pb-top"></div>
+      <div class="pb-center"><div class="pb-btn"></div></div>
+      <div class="pb-bottom"></div>
+    </div>
+    <p class="loading-text">{{ lang.t['searching'] }}</p>
+  </div>
+
+  <!-- Grid -->
+  <div class="pokemon-grid" *ngIf="pokemons.length > 0">
+    <div
+      class="poke-card"
+      *ngFor="let p of pokemons"
+      [class]="'poke-card type-bg-' + (p.types[0] || 'normal')"
+      (click)="goToDetail(p.id)"
+    >
+      <!-- Pokéball decoración -->
+      <div class="poke-card__ball"></div>
+
+      <div class="poke-card__header">
+        <span class="poke-card__id">{{ formatId(p.id) }}</span>
+        <ion-icon
+          *ngIf="isFavorite(p.id)"
+          name="heart"
+          color="danger"
+          class="poke-card__fav"
+        ></ion-icon>
+      </div>
+
+      <div class="poke-card__img-container">
+        <img
+          [src]="p.sprite"
+          [alt]="p.name"
+          class="poke-card__img"
+        />
+      </div>
+
+      <div class="poke-card__footer">
+        <h3 class="poke-card__name">{{ p.name | titlecase }}</h3>
+        <div class="poke-card__types">
+          <span *ngFor="let t of p.types" [class]="'type-pill type-' + t">{{ typeLabel(t) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="onInfiniteScroll($any($event))">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      [loadingText]="lang.t['loadingMore']"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
